@@ -1,16 +1,27 @@
-import { Text, View } from "react-native";
+import {StyleSheet, Text, View} from "react-native";
+import {useState} from "react";
+import styles from "../styles/index.styles"
+import DatePicker from "../components/DatePicker";
+import Asteroids from "../components/Asteroids";
 
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Text>hello</Text>
-    </View>
-  );
+    // define date, setDate using state
+    const [date, setDate] = useState(new Date()); // initialize component with current date
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.text}>
+                See what asteroids are headed our way!
+            </Text>
+
+            {/* pass date to Asteroids*/}
+            <Asteroids date={date} />
+
+            {/* pass date & setDate to DatePicker */}
+            <DatePicker
+                date={date}
+                setDate={setDate}
+            />
+        </View>
+    );
 }

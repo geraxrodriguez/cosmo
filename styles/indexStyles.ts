@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    scrollContainer: {
-        backgroundColor: 'black',
+    rootContainer: {
         flex: 1,
+        backgroundColor: 'black',
     },
     headerContainer: {
         paddingTop: 40,

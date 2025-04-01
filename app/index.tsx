@@ -8,25 +8,24 @@ export default function Index() {
     const [date, setDate] = useState(new Date());
 
     return (
-        <ScrollView
-            contentContainerStyle={styles.scrollContainer}
-            stickyHeaderIndices={[0]}
-        >
-            <View style={styles.headerContainer}>
-                <Text style={styles.dateText}>
-                    {date.toDateString()}
-                </Text>
-                <Text style={styles.headerText}>
-                    asteroids that are headed our way
-                </Text>
-            </View>
+        <View style={styles.rootContainer}>
+            <ScrollView stickyHeaderIndices={[0]}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.dateText}>
+                        {date.toDateString()}
+                    </Text>
+                    <Text style={styles.headerText}>
+                        asteroids that are headed our way
+                    </Text>
+                </View>
 
-            <DatePicker
-                date={date}
-                setDate={setDate}
-            />
+                <DatePicker
+                    date={date}
+                    setDate={setDate}
+                />
 
-            <Asteroids date={date}/>
-        </ScrollView>
+                <Asteroids date={date}/>
+            </ScrollView>
+        </View>
     );
 }

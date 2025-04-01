@@ -5,11 +5,7 @@ export default function RootLayout() {
         <Stack>
             <Stack.Screen
                 name="index"
-                options={{headerTitle: 'COSMO'}}
-            />
-            <Stack.Screen
-                name="about"
-                options={{headerTitle: 'ABOUT'}}
+                options={{headerShown: false}}
             />
         </Stack>
     )

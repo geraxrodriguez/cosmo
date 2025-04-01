@@ -1,6 +1,7 @@
 import {useState} from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, Button, Pressable, Text} from 'react-native';
 import DateTimePicker, {DateTimePickerEvent} from '@react-native-community/datetimepicker';
+import styles from '../styles/datePickerStyles'
 
 interface DatePickerProps {
     date: Date;
@@ -18,11 +19,20 @@ export default function DatePicker(props: DatePickerProps) {
     };
 
     return (
-        <View>
-            <Button
-                title="Change Date"
+        <View style={styles.datePickerContainer}>
+            {/*<Button*/}
+            {/*    style={styles.button}*/}
+            {/*    title="Change Date"*/}
+            {/*    onPress={(): void => setDate(selectedDate)}*/}
+            {/*/>*/}
+            <Pressable
+                style={styles.button}
                 onPress={(): void => setDate(selectedDate)}
-            />
+            >
+                <Text style={styles.buttonText}>
+                    Select Date
+                </Text>
+            </Pressable>
             <DateTimePicker
                 mode="date"
                 value={selectedDate}

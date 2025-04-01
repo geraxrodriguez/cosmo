@@ -1,27 +1,32 @@
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View, ScrollView} from "react-native";
 import {useState} from "react";
-import styles from "../styles/index.styles"
+import styles from "../styles/styles"
 import DatePicker from "../components/DatePicker";
 import Asteroids from "../components/Asteroids";
 
 export default function Index() {
-    // define date, setDate using state
-    const [date, setDate] = useState(new Date()); // initialize component with current date
+    const [date, setDate] = useState(new Date());
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>
-                See what asteroids are headed our way!
-            </Text>
+        <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            stickyHeaderIndices={[0]}
+        >
+            <View style={styles.headerContainer}>
+                <Text style={styles.dateText}>
+                    {date.toDateString()}
+                </Text>
+                <Text style={styles.headerText}>
+                    Asteroids are headed our way
+                </Text>
+            </View>
 
-            {/* pass date to Asteroids*/}
-            <Asteroids date={date} />
-
-            {/* pass date & setDate to DatePicker */}
             <DatePicker
                 date={date}
                 setDate={setDate}
             />
-        </View>
+
+            <Asteroids date={date}/>
+        </ScrollView>
     );
 }

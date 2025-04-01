@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Apophis",
+    "diameter": 370,
+    "velocity": 30700,
+    "missDistance": 19000,
+    "isHazardous": true
+  },
+  {
+    "name": "Bennu",
+    "diameter": 490,
+    "velocity": 28000,
+    "missDistance": 450000,
+    "isHazardous": true
+  },
+  {
+    "name": "Didymos",
+    "diameter": 780,
+    "velocity": 25000,
+    "missDistance": 750000,
+    "isHazardous": true
+  },
+  {
+    "name": "Eros",
+    "diameter": 16800,
+    "velocity": 24000,
+    "missDistance": 2200000,
+    "isHazardous": false
+  },
+  {
+    "name": "Gaspra",
+    "diameter": 11800,
+    "velocity": 23000,
+    "missDistance": 3300000,
+    "isHazardous": false
+  },
+  {
+    "name": "Hathor",
+    "diameter": 210,
+    "velocity": 29000,
+    "missDistance": 120000,
+    "isHazardous": true
+  },
+  {
+    "name": "Icarus",
+    "diameter": 1400,
+    "velocity": 27000,
+    "missDistance": 6400000,
+    "isHazardous": true
+  },
+  {
+    "name": "Juno",
+    "diameter": 240,
+    "velocity": 22000,
+    "missDistance": 500000,
+    "isHazardous": false
+  },
+  {
+    "name": "Kleopatra",
+    "diameter": 217,
+    "velocity": 21000,
+    "missDistance": 1800000,
+    "isHazardous": false
+  },
+  {
+    "name": "Lutetia",
+    "diameter": 100000,
+    "velocity": 20000,
+    "missDistance": 3800000,
+    "isHazardous": false
+  },
+  {
+    "name": "Mithra",
+    "diameter": 2100,
+    "velocity": 25000,
+    "missDistance": 900000,
+    "isHazardous": true
+  }
+]

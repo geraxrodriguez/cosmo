@@ -6,15 +6,16 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     button: {
-        padding: 0,
-        margin: 0,
+        paddingVertical: 7,
+        paddingHorizontal: 15,
+        backgroundColor: '#050609',
+        borderRadius: 10,
     },
     buttonText: {
         color: '#ffab00',
         fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: -5,
     }
 })
 

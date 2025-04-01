@@ -30,17 +30,17 @@ async function getAsteroids(date: Date): Promise<Asteroid[]> {
 
     const response = await fetch(url);
     const data = await response.json();
-    return data?.near_earth_objects[apiDateProperty].map(createAsteroid);
+    return data.near_earth_objects[apiDateProperty].map(createAsteroid);
 }
 
 function createAsteroid(a: any): Asteroid {
     const name = formatName(a.name)
-    const velocity = parseInt(a?.close_approach_data[0]?.relative_velocity?.miles_per_hour)
-    const missDistance = parseInt(a?.close_approach_data[0]?.miss_distance.miles)
-    const isHazardous = a?.is_potentially_hazardous_asteroid
+    const velocity = parseInt(a.close_approach_data[0].relative_velocity.miles_per_hour)
+    const missDistance = parseInt(a.close_approach_data[0].miss_distance.miles)
+    const isHazardous = a.is_potentially_hazardous_asteroid
 
-    let minDiameter = a?.estimated_diameter?.feet?.estimated_diameter_min
-    let maxDiameter = a?.estimated_diameter?.feet?.estimated_diameter_max
+    let minDiameter = a.estimated_diameter.feet.estimated_diameter_min
+    let maxDiameter = a.estimated_diameter.feet.estimated_diameter_max
     const diameter = Math.round((minDiameter + maxDiameter) / 2)
 
     return {

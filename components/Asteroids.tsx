@@ -34,10 +34,10 @@ async function getAsteroids(date: Date): Promise<Asteroid[]> {
 }
 
 function createAsteroid(a: any): Asteroid {
-    const name = formatName(a.name)
+    const name = (a.name).replace(/[()]/g, '')
     const velocity = parseInt(a.close_approach_data[0].relative_velocity.miles_per_hour)
     const missDistance = parseInt(a.close_approach_data[0].miss_distance.miles)
-    const isHazardous = a.is_potentially_hazardous_asteroid
+    const isHazardous = a.is_potentially_hazardous_asteroid;
 
     let minDiameter = a.estimated_diameter.feet.estimated_diameter_min
     let maxDiameter = a.estimated_diameter.feet.estimated_diameter_max
@@ -52,10 +52,6 @@ function createAsteroid(a: any): Asteroid {
     };
 };
 
-function formatName(name: string): string{
-    return name.replace(/[()]/g, '')
-}
-
 export default function Asteroids(props: AsteroidsProps) {
     const {date} = props;
     const [asteroids, setAsteroids] = useState<Asteroid[]>([]);
@@ -63,11 +59,11 @@ export default function Asteroids(props: AsteroidsProps) {
 
     async function updateAsteroids() {
         try {
-            // comment out to avoid hitting API during styling, use mockAsteroids instead
+            // during styling, we can comment these two lines out and use mockAsteroids instead
             const asteroids = await getAsteroids(date);
             setAsteroids(asteroids);
 
-            // comment out when you need to hit API
+            // used when we want to avoid hitting API
             // setAsteroids(mockAsteroids);
         } catch (err) {
             setError('Failed to update asteroids');

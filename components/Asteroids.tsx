@@ -25,7 +25,7 @@ function buildURL(date: Date): string {
 }
 
 async function getAsteroids(date: Date): Promise<Asteroid[]> {
-    const apiDateProperty = formatDate(date); // last property that holds asteorid info in API response will be in MMMM-MM-YY format
+    const apiDateProperty = formatDate(date); // last property that holds asteroid info in API response will be in MMMM-MM-YY format
     const url = buildURL(date);
 
     const response = await fetch(url);

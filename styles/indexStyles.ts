@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     scrollContainer: {
         backgroundColor: 'black',
+        flex: 1,
     },
     headerContainer: {
         paddingTop: 40,

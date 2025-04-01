@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
     datePickerContainer: {
         alignItems: 'center',
         marginBottom: 30,
-
     },
     button: {
         padding: 0,

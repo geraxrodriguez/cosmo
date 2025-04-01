@@ -25,26 +25,36 @@ function buildURL(date: Date): string {
 }
 
 async function getAsteroids(date: Date): Promise<Asteroid[]> {
-    const apiDateProperty = formatDate(date);
+    const apiDateProperty = formatDate(date); // last property that holds asteorid info in API response will be in MMMM-MM-YY format
     const url = buildURL(date);
+
     const response = await fetch(url);
     const data = await response.json();
-    return data.near_earth_objects[apiDateProperty].map(createAsteroid);
+    return data?.near_earth_objects[apiDateProperty].map(createAsteroid);
 }
 
 function createAsteroid(a: any): Asteroid {
-    let minDiameter = a.estimated_diameter.feet.estimated_diameter_min
-    let maxDiameter = a.estimated_diameter.feet.estimated_diameter_max
-    const diameter = (minDiameter + maxDiameter) / 2
+    const name = formatName(a.name)
+    const velocity = parseInt(a?.close_approach_data[0]?.relative_velocity?.miles_per_hour)
+    const missDistance = parseInt(a?.close_approach_data[0]?.miss_distance.miles)
+    const isHazardous = a?.is_potentially_hazardous_asteroid
+
+    let minDiameter = a?.estimated_diameter?.feet?.estimated_diameter_min
+    let maxDiameter = a?.estimated_diameter?.feet?.estimated_diameter_max
+    const diameter = Math.round((minDiameter + maxDiameter) / 2)
 
     return {
-        name: a.name,
-        diameter: Math.round(diameter),
-        velocity: parseInt(a.close_approach_data[0].relative_velocity.miles_per_hour),
-        missDistance: parseInt(a.close_approach_data[0].miss_distance.miles),
-        isHazardous: a.is_potentially_hazardous_asteroid
+        name,
+        diameter,
+        velocity,
+        missDistance,
+        isHazardous,
     };
 };
+
+function formatName(name: string): string{
+    return name.replace(/[()]/g, '')
+}
 
 export default function Asteroids(props: AsteroidsProps) {
     const {date} = props;
@@ -53,12 +63,12 @@ export default function Asteroids(props: AsteroidsProps) {
 
     async function updateAsteroids() {
         try {
-            // commented out to avoid hitting API during styling, using mockAsteroids data
-            // const asteroids = await getAsteroids(date);
-            // setAsteroids(asteroids);
+            // comment out to avoid hitting API during styling, use mockAsteroids instead
+            const asteroids = await getAsteroids(date);
+            setAsteroids(asteroids);
 
-            // delete/comment out when you need to hit API
-            setAsteroids(mockAsteroids);
+            // comment out when you need to hit API
+            // setAsteroids(mockAsteroids);
         } catch (err) {
             setError('Failed to update asteroids');
         }
@@ -69,17 +79,19 @@ export default function Asteroids(props: AsteroidsProps) {
     }, [date]);
 
     return (
-        <View style={styles.asteroidsContainer}>
+        <View>
             {/* this could be in its own component: AsteroidDetails */}
             {asteroids.map((asteroid, index) => (
-                <View key={index}>
-                    <Text style={styles.asteroidsNum}>{index + 1}</Text>
-                    <Text style={styles.asteroidsName}>{asteroid.name}</Text>
-                    <Text style={styles.asteroidsText}>Diameter: {asteroid.diameter} feet</Text>
-                    <Text style={styles.asteroidsText}>Velocity: {asteroid.velocity} mph</Text>
-                    <Text style={styles.asteroidsText}>Miss Distance: {asteroid.missDistance} miles</Text>
-                    <Text style={styles.asteroidsText}>Is Hazardous? {asteroid.isHazardous ? 'Yes': 'No'}</Text>
-                    <Text></Text>
+                <View
+                    style={styles.asteroidContainer}
+                    key={index}
+                >
+                    <Text style={styles.asteroidNum}>{index + 1}</Text>
+                    <Text style={styles.asteroidName}>{asteroid.name}</Text>
+                    <Text style={styles.asteroidText}>Diameter: {asteroid.diameter} feet</Text>
+                    <Text style={styles.asteroidText}>Velocity: {asteroid.velocity} mph</Text>
+                    <Text style={styles.asteroidText}>Miss Distance: {asteroid.missDistance} miles</Text>
+                    <Text style={styles.asteroidText}>Is Hazardous? {asteroid.isHazardous ? 'Yes': 'No'}</Text>
                 </View>
             ))}
 

@@ -20,11 +20,6 @@ export default function DatePicker(props: DatePickerProps) {
 
     return (
         <View style={styles.datePickerContainer}>
-            {/*<Button*/}
-            {/*    style={styles.button}*/}
-            {/*    title="Change Date"*/}
-            {/*    onPress={(): void => setDate(selectedDate)}*/}
-            {/*/>*/}
             <Pressable
                 style={styles.button}
                 onPress={(): void => setDate(selectedDate)}

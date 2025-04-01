@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         textTransform: 'uppercase',
+
     },
     text: {
         color: 'white',

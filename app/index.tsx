@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, ScrollView} from "react-native";
 import {useState} from "react";
-import styles from "../styles/styles"
+import styles from "../styles/indexStyles"
 import DatePicker from "../components/DatePicker";
 import Asteroids from "../components/Asteroids";
 
@@ -17,7 +17,7 @@ export default function Index() {
                     {date.toDateString()}
                 </Text>
                 <Text style={styles.headerText}>
-                    Asteroids are headed our way
+                    asteroids that are headed our way
                 </Text>
             </View>
 

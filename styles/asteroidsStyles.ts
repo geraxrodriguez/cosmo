@@ -1,21 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    asteroidsContainer: {
-        backgroundColor: 'black',
+    asteroidContainer: {
+        marginBottom: 20,
     },
-    asteroidsNum: {
+    asteroidNum: {
         color: '#ffab00',
         fontSize: 14,
         textAlign: 'center',
     },
-    asteroidsName: {
+    asteroidName: {
         color: '#ffab00',
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    asteroidsText: {
+    asteroidText: {
         color: 'white',
         fontSize: 16,
         textAlign: 'center',

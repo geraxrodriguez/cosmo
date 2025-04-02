@@ -31,3 +31,9 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
     npx expo start
    ```
+   
+Known Issues
+- DateTimePicker text not displaying properly on iPhone 16, iPads. To view proper display, open app on iPhone SE
+- background color on pressable not displaying properly
+- Optional chaining should be implemented in parsing the API
+- header topMargin needs optimizing for different devices

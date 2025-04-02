@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
         color: '#ffab00',
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    datePickerText: {
+        color: 'white'
     }
 })
 

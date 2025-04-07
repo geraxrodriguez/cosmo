@@ -34,6 +34,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    
 Known Issues
 - DateTimePicker text not displaying properly on iPhone 16, iPads. To view proper display, open app on iPhone SE
+  - UPDATE: DateTimePicker only renders correctly when device set to dark mode.
 - background color on pressable not displaying properly
 - Optional chaining should be implemented in parsing the API
 - header topMargin needs optimizing for different devices

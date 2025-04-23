@@ -22,7 +22,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 4. Create a .env file 
    1. in the root directory, create a .env file with the following two variables:
-         1. EXPO_PUBLIC_API_URL=https://api.nasa.gov/neo/rest/v1/feed
+         1. EXPO_PUBLIC_API_URL=https://api.nasa.gov
          2. EXPO_PUBLIC_API_KEY=<YOUR_API_KEY>
          3. ***Replace <YOUR_API_KEY> with the key you received via email.
 

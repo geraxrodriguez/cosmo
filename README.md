@@ -10,6 +10,8 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    2. Follow the [Expo installation guide](https://docs.expo.dev/get-started/set-up-your-environment/?platform=ios&device=simulated&mode=expo-go)
    3. I recommend the Expo Go option as it is easy to setup. 
 
+You'll need to run npm install before running npx expo start. 
+
 
 2. Install dependencies
    ```bash

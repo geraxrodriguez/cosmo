@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, useColorScheme} from 'react-native';
 import {addDays, formatDate} from "../helpers/dateHelpers"
 import styles from "../styles/asteroidsStyles";
 import mockAsteroids from '../mocks/mockAsteroids.json'
@@ -56,6 +56,7 @@ export default function Asteroids(props: AsteroidsProps) {
     const {date} = props;
     const [asteroids, setAsteroids] = useState<Asteroid[]>([]);
     const [error, setError] = useState('');
+    const isDarkMode = useColorScheme() === 'dark';
 
     async function updateAsteroids() {
         try {
@@ -84,10 +85,10 @@ export default function Asteroids(props: AsteroidsProps) {
                 >
                     <Text style={styles.asteroidNum}>{index + 1}</Text>
                     <Text style={styles.asteroidName}>{asteroid.name}</Text>
-                    <Text style={styles.asteroidText}>Diameter: {asteroid.diameter} feet</Text>
-                    <Text style={styles.asteroidText}>Velocity: {asteroid.velocity} mph</Text>
-                    <Text style={styles.asteroidText}>Miss Distance: {asteroid.missDistance} miles</Text>
-                    <Text style={styles.asteroidText}>Is Hazardous? {asteroid.isHazardous ? 'Yes': 'No'}</Text>
+                    <Text style={isDarkMode ? styles.asteroidDarkModeText : styles.asteroidLightModeText}>Diameter: {asteroid.diameter} feet</Text>
+                    <Text style={isDarkMode ? styles.asteroidDarkModeText : styles.asteroidLightModeText}>Velocity: {asteroid.velocity} mph</Text>
+                    <Text style={isDarkMode ? styles.asteroidDarkModeText : styles.asteroidLightModeText}>Miss Distance: {asteroid.missDistance} miles</Text>
+                    <Text style={isDarkMode ? styles.asteroidDarkModeText : styles.asteroidLightModeText}>Is Hazardous? {asteroid.isHazardous ? 'Yes': 'No'}</Text>
                 </View>
             ))}
 

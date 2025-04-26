@@ -15,7 +15,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    asteroidText: {
+    asteroidLightModeText: {
+        color: 'black',
+        fontSize: 16,
+        textAlign: 'center',
+    },
+    asteroidDarkModeText: {
         color: 'white',
         fontSize: 16,
         textAlign: 'center',

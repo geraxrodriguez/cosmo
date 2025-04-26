@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     pressable: {
         paddingVertical: 7,
         paddingHorizontal: 15,
-        backgroundColor: '#050609',
+        backgroundColor: '#083741',
         borderRadius: 10,
     },
     pressableText: {

@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#115A68', 
     },
     headerContainer: {
-        paddingTop: 40,
+        paddingTop: 50,
         paddingBottom: 20,
-        backgroundColor: '#050609', // dark gray
+        backgroundColor: '#083741',
         marginBottom: 30,
     },
     dateText: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     headerText: {
-        color: 'white',
+        color: '#ffab00',
         fontSize: 14,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        color: 'white',
+        // color: 'white',
     },
 });
 

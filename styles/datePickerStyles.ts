@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { RFValue } from "react-native-responsive-fontsize";
 
 const styles = StyleSheet.create({
     datePickerContainer: {
@@ -6,14 +7,14 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     pressable: {
-        paddingVertical: 7,
-        paddingHorizontal: 15,
+        paddingVertical: RFValue(7),
+        paddingHorizontal: RFValue(15),
         backgroundColor: '#083741',
         borderRadius: 10,
     },
     pressableText: {
         color: '#ffab00',
-        fontSize: 18,
+        fontSize: RFValue(18),
         fontWeight: 'bold',
     },
 })

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { RFValue } from "react-native-responsive-fontsize";
 
 const styles = StyleSheet.create({
     asteroidContainer: {
@@ -6,23 +7,18 @@ const styles = StyleSheet.create({
     },
     asteroidNum: {
         color: '#ffab00',
-        fontSize: 14,
+        fontSize: RFValue(14),
         textAlign: 'center',
     },
     asteroidName: {
         color: '#ffab00',
-        fontSize: 20,
+        fontSize: RFValue(20),
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    asteroidLightModeText: {
-        color: 'black',
-        fontSize: 16,
-        textAlign: 'center',
-    },
-    asteroidDarkModeText: {
+    asteroidText: {
         color: 'white',
-        fontSize: 16,
+        fontSize: RFValue(14),
         textAlign: 'center',
     },
     errorText: {

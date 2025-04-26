@@ -33,6 +33,7 @@ export default function DatePicker(props: DatePickerProps) {
                 value={selectedDate}
                 display="spinner"
                 onChange={updateSelectedDate}
+                themeVariant='dark'
             />
         </View>
     );

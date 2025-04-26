@@ -24,7 +24,7 @@ You'll need to run npm install before running npx expo start.
 
 4. Create a .env file 
    1. in the root directory, create a .env file with the following two variables:
-         1. EXPO_PUBLIC_API_URL=https://api.nasa.gov
+         1. EXPO_PUBLIC_API_URL=https://api.nasa.gov/neo/rest/v1/feed
          2. EXPO_PUBLIC_API_KEY=<YOUR_API_KEY>
          3. ***Replace <YOUR_API_KEY> with the key you received via email.
 
@@ -36,7 +36,7 @@ You'll need to run npm install before running npx expo start.
    
 Known Issues
 - DateTimePicker text not displaying properly on iPhone 16, iPads. To view proper display, open app on iPhone SE
-  - UPDATE: DateTimePicker only renders correctly when device set to dark mode.
+- UPDATE: DateTimePicker only renders correctly when device set to dark mode.
 - background color on pressable not displaying properly
 - Optional chaining should be implemented in parsing the API
 - header topMargin needs optimizing for different devices

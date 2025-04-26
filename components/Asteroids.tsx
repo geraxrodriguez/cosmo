@@ -21,7 +21,7 @@ function buildURL(date: Date): string {
     const endDate: any = formatDate(addDays(date, 1));
     const api = process.env.EXPO_PUBLIC_API_URL;
     const key = process.env.EXPO_PUBLIC_API_KEY;
-    return `${api}?start_date=${startDate}&end_date=${endDate}&api_key=${key}`
+    return `${api}start_date=${startDate}&end_date=${endDate}&api_key=${key}`
 }
 
 async function getAsteroids(date: Date): Promise<Asteroid[]> {

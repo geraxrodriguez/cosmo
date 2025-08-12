@@ -1,0 +1,27 @@
+{
+    "datePicker": {
+        "startDate": "Début",
+        "endDate": "Fin",
+        "apply": "Rechercher",
+        "title": "Sélectionnez une plage de dates"
+    },
+    "asteroids": {
+        "title": "Astéroïdes qui se dirigent vers nous",
+        "noAsteroids": "Aucun astéroïde trouvé pour la plage de dates sélectionnée.",
+        "error": "Échec du chargement des astéroïdes. Veuillez réessayer plus tard."
+    },
+    "asteroid": {
+        "diameter": "Diamètre",
+        "feet": "pieds",
+        "velocity": "Vitesse",
+        "mph": "mph",
+        "missDistance": "Distance d’évitement",
+        "miles": "miles",
+        "isHazardous": "Est dangereux",
+        "yes": "Oui",
+        "no": "Non"
+    },
+    "language": {
+        "select": "Sélectionner la langue"
+    }
+}

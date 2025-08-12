@@ -1,97 +1,89 @@
-import {useState, useEffect} from 'react';
-import {View, Text, useColorScheme} from 'react-native';
-import {addDays, formatDate} from "../helpers/dateHelpers"
+import {
+  useState,
+  useEffect,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+} from "react";
+import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
 import styles from "../styles/asteroidsStyles";
-import mockAsteroids from '../mocks/mockAsteroids.json'
+import { useDateContext } from "@/contexts/DatesProvider";
+import { Asteroid } from "@/types/asteroids";
+import { getAsteroids } from "@/operations/asteroids";
+import { FlashList, FlashListRef } from "@shopify/flash-list";
+import AsteroidDetail from "./AsteroidDetails";
 
-interface AsteroidsProps {
-    date: Date
-}
+const Asteroids = forwardRef((props, ref) => {
+  const [asteroids, setAsteroids] = useState<Asteroid[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const flashListRef = useRef<FlashListRef<Asteroid>>(null);
+  const { startDate, endDate } = useDateContext();
 
-interface Asteroid {
-    name: string;
-    diameter: number;
-    velocity: number;
-    missDistance: number;
-    isHazardous: boolean;
-}
+  async function updateAsteroids() {
+    setLoading(true);
+    try {
+      setError("");
+      const asteroids = await getAsteroids(startDate, endDate);
+      if (asteroids) {
+        setAsteroids(asteroids);
+      }
+    } catch (err) {
+      setAsteroids([]);
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  }
 
-function buildURL(date: Date): string {
-    const startDate: any = formatDate(date);
-    const endDate: any = formatDate(addDays(date, 1));
-    const api = process.env.EXPO_PUBLIC_API_URL;
-    const key = process.env.EXPO_PUBLIC_API_KEY;
-    return `${api}start_date=${startDate}&end_date=${endDate}&api_key=${key}`
-}
+  useEffect(() => {
+    updateAsteroids();
+  }, [startDate, endDate]);
 
-async function getAsteroids(date: Date): Promise<Asteroid[]> {
-    const apiDateProperty = formatDate(date); // last property that holds asteroid info in API response will be in MMMM-MM-YY format
-    const url = buildURL(date);
+  // Expose scrollToTop method to parent via ref
+  useImperativeHandle(ref, () => ({
+    scrollToTop: () => {
+      if (flashListRef.current) {
+        flashListRef.current.scrollToOffset({ offset: 0, animated: true });
+      }
+    },
+  }));
 
-    const response = await fetch(url);
-    const data = await response.json();
-    return data.near_earth_objects[apiDateProperty].map(createAsteroid);
-}
-
-function createAsteroid(a: any): Asteroid {
-    const name = (a.name).replace(/[()]/g, '')
-    const velocity = parseInt(a.close_approach_data[0].relative_velocity.miles_per_hour)
-    const missDistance = parseInt(a.close_approach_data[0].miss_distance.miles)
-    const isHazardous = a.is_potentially_hazardous_asteroid;
-
-    let minDiameter = a.estimated_diameter.feet.estimated_diameter_min
-    let maxDiameter = a.estimated_diameter.feet.estimated_diameter_max
-    const diameter = Math.round((minDiameter + maxDiameter) / 2)
-
-    return {
-        name,
-        diameter,
-        velocity,
-        missDistance,
-        isHazardous,
-    };
-};
-
-export default function Asteroids(props: AsteroidsProps) {
-    const {date} = props;
-    const [asteroids, setAsteroids] = useState<Asteroid[]>([]);
-    const [error, setError] = useState('');
-
-    async function updateAsteroids() {
-        try {
-            // during styling, we can comment these two lines out and use mockAsteroids instead
-            const asteroids = await getAsteroids(date);
-            setAsteroids(asteroids);
-
-            // used when we want to avoid hitting API
-            // setAsteroids(mockAsteroids);
-        } catch (err) {
-            setError('Failed to update asteroids');
-        }
-    };
-
-    useEffect(() => {
-        updateAsteroids();
-    }, [date]);
-
+  if (loading)
     return (
-        <View>
-            {/* this could be in its own component: AsteroidDetails */}
-            {asteroids.map((asteroid, index) => (
-                <View
-                    style={styles.asteroidContainer}
-                    key={index}
-                >
-                    <Text style={styles.asteroidNum}>{index + 1}</Text>
-                    <Text style={styles.asteroidName}>{asteroid.name}</Text>
-                    <Text style={styles.asteroidText}>Diameter: {asteroid.diameter} feet</Text>
-                    <Text style={styles.asteroidText}>Velocity: {asteroid.velocity} mph</Text>
-                    <Text style={styles.asteroidText}>Miss Distance: {asteroid.missDistance} miles</Text>
-                    <Text style={styles.asteroidText}>Is Hazardous? {asteroid.isHazardous ? 'Yes': 'No'}</Text>
-                </View>
-            ))}
-
-            {error && <Text style={styles.errorText}>{error}</Text>}
-        </View>
+      <ActivityIndicator color="white" size="large" style={{ marginTop: 12 }} />
     );
-};
+  if (error)
+    return (
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>{error}</Text>
+      </View>
+    );
+
+  return (
+    <FlashList
+      ref={flashListRef}
+      data={asteroids}
+      renderItem={({ item }) => <AsteroidDetail asteroid={item} />}
+      keyExtractor={(item) => `${item.id}`}
+      onRefresh={updateAsteroids}
+      refreshing={loading}
+      refreshControl={
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={updateAsteroids}
+          tintColor={"white"}
+        />
+      }
+      ListEmptyComponent={
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>No asteroids found :(</Text>
+        </View>
+      }
+    >
+      {error && <Text style={styles.errorText}>{error}</Text>}
+    </FlashList>
+  );
+});
+
+export default Asteroids;

@@ -1,0 +1,27 @@
+{
+    "datePicker": {
+        "startDate": "Start",
+        "endDate": "End",
+        "apply": "Search",
+        "title": "Select a date range"
+    },
+    "asteroids": {
+        "title": "Asteroids that are headed our way",
+        "noAsteroids": "No asteroids found for the selected date range.",
+        "error": "Failed to load asteroids. Please try again later."
+    },
+    "asteroid": {
+        "diameter": "Diameter",
+        "feet": "feet",
+        "velocity": "Velocity",
+        "mph": "mph",
+        "missDistance": "Miss Distance",
+        "miles": "miles",
+        "isHazardous": "Is Hazardous",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "language": {
+        "select": "Select Language"
+    }
+}
